@@ -1,0 +1,7 @@
+{
+  "name":"INI datasource provider",
+  "version": "0.1",
+  "id": "ini-ds",
+    "roles": ["datasource"],
+    "dependencies": []
+}

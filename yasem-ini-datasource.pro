@@ -29,7 +29,9 @@ unix {
 }
 
 OTHER_FILES += \
-    metadata.json
+    metadata.json \
+    LICENSE \
+    README.md
 
 include(../common.pri)
 DESTDIR = $$DEFAULT_PLUGIN_DIR

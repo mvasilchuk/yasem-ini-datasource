@@ -4,13 +4,14 @@
 #
 #-------------------------------------------------
 
+VERSION = 1.0.0
+
 QT       -= gui
 
-CONFIG += C++11
+CONFIG += c++11
 
 TARGET = yasem-ini-datasource
 TEMPLATE = lib
-CONFIG += plugin
 
 DEFINES += INIDS_LIBRARY
 

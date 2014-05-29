@@ -23,7 +23,6 @@ PLUGIN_ERROR_CODES IniDS::deinitialize()
 
 Datasource *IniDS::getDatasourceForProfile(Profile *profile)
 {
-    STUB();
     Q_ASSERT(profile != NULL);
 
     return new IniDatasource(profile);

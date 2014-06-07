@@ -19,11 +19,7 @@ IniDatasource::IniDatasource(Profile *profile)
     settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QString(CONFIG_DIR).append("/").append(profilesDir),
                              profile->getId());
 
-    //qDebug() << "PROFILE:" << settings->value("profile/name", "Undefined");
-    //qDebug() << settings->allKeys();
-
     Q_ASSERT(settings);
-
 }
 
 bool IniDatasource::set(const QString &tag, const QString &name, const int value)
@@ -47,6 +43,5 @@ bool IniDatasource::set(const QString &tag, const QString &name, const QString &
 QString IniDatasource::get(const QString &tag, const QString &name, const QString &defaultValue = "")
 {
     Q_ASSERT(settings);
-    qDebug() << "GET:" << tag << name << defaultValue;
     return settings->value(QString("%1/%2").arg(tag).arg(name), defaultValue).toString();
 }

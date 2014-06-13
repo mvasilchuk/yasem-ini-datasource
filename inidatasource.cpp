@@ -11,7 +11,6 @@ using namespace yasem;
 
 IniDatasource::IniDatasource(Profile *profile)
 {
-    STUB();
     Q_ASSERT(profile != NULL);
     this->profile = profile;
     QString profilesDir = Core::instance()->settings()->value("ProfilesDir", CONFIG_PROFILES_DIR).toString();

@@ -15,7 +15,7 @@ TEMPLATE = lib
 
 DEFINES += INIDS_LIBRARY
 
-INCLUDEPATH += ../yasem-core
+INCLUDEPATH += ../../yasem-core
 
 SOURCES += inids.cpp \
     inidatasource.cpp
@@ -34,5 +34,5 @@ OTHER_FILES += \
     LICENSE \
     README.md
 
-include(../common.pri)
+include(../../common.pri)
 DESTDIR = $$DEFAULT_PLUGIN_DIR

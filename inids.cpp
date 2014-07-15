@@ -29,3 +29,13 @@ Datasource *IniDS::getDatasourceForProfile(Profile *profile)
 }
 
 
+
+
+void yasem::IniDS::register_dependencies()
+{
+}
+
+void yasem::IniDS::register_roles()
+{
+    register_role(ROLE_DATASOURCE);
+}

@@ -32,6 +32,11 @@ public:
     // DatasourcePlugin interface
 public:
     Datasource* getDatasourceForProfile(Profile* profile);
+
+    // Plugin interface
+public:
+    void register_dependencies();
+    void register_roles();
 };
 
 }

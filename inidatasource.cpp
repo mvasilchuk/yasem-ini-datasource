@@ -1,6 +1,5 @@
 #include "inidatasource.h"
 #include "macros.h"
-#include "stbplugin.h"
 #include "core.h"
 #include "stbprofile.h"
 

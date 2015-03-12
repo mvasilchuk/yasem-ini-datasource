@@ -8,8 +8,8 @@
 
 using namespace yasem;
 
-IniDatasource::IniDatasource(Profile *profile, Plugin* plugin, QObject* parent):
-    DatasourcePluginObject(plugin, parent),
+IniDatasource::IniDatasource(Profile *profile, Plugin* plugin):
+    DatasourcePluginObject(plugin),
     m_profile(profile),
     m_settings(NULL)
 {
@@ -63,5 +63,5 @@ PluginObjectResult IniDatasource::deinit()
 
 DatasourcePluginObject *IniDatasource::getDatasourceForProfile(Profile *profile)
 {
-    return new IniDatasource(profile, m_plugin, m_parent);
+    return new IniDatasource(profile, m_plugin);
 }

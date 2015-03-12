@@ -15,7 +15,7 @@ class IniDatasource : public DatasourcePluginObject
 {
     Q_OBJECT
 public:
-    explicit IniDatasource(Profile *profile, Plugin* plugin, QObject* parent = 0);
+    explicit IniDatasource(Profile *profile, Plugin* plugin);
     virtual ~IniDatasource();
 
 signals:

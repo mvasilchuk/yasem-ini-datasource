@@ -1,7 +1,8 @@
 #ifndef INIDATASOURCE_H
 #define INIDATASOURCE_H
 
-#include "datasource.h"
+#include "datasourceplugin.h"
+#include "datasourcepluginobject.h"
 
 #include <QObject>
 #include <QSettings>
@@ -9,11 +10,13 @@
 namespace yasem
 {
 class Profile;
-class IniDatasource : public QObject, public Datasource
+
+class IniDatasource : public DatasourcePluginObject
 {
     Q_OBJECT
 public:
-    explicit IniDatasource(Profile *profile);
+    explicit IniDatasource(Profile *profile, Plugin* plugin, QObject* parent = 0);
+    virtual ~IniDatasource();
 
 signals:
 
@@ -25,12 +28,13 @@ public slots:
     QString get(const QString &tag, const QString &name, const QString &defaultValue);
 
 protected:
-    QSettings* settings;
-    Profile* profile;
+    Profile* m_profile;
+    QSettings* m_settings;
 
-    // Datasource interface
 public:
-
+    PluginObjectResult init();
+    PluginObjectResult deinit();
+    DatasourcePluginObject* getDatasourceForProfile(Profile* profile);
 };
 
 }

@@ -8,16 +8,23 @@
 
 using namespace yasem;
 
-IniDatasource::IniDatasource(Profile *profile)
+IniDatasource::IniDatasource(Profile *profile, Plugin* plugin, QObject* parent):
+    DatasourcePluginObject(plugin, parent),
+    m_profile(profile),
+    m_settings(NULL)
 {
-    Q_ASSERT(profile != NULL);
-    this->profile = profile;
-    QString profilesDir = Core::instance()->settings()->value("ProfilesDir", CONFIG_PROFILES_DIR).toString();
+    if(m_profile != NULL)
+    {
+        QString profilesDir = Core::instance()->settings()->value("ProfilesDir", CONFIG_PROFILES_DIR).toString();
 
-    settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QString(CONFIG_DIR).append("/").append(profilesDir),
+        m_settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QString(CONFIG_DIR).append("/").append(profilesDir),
                              profile->getId());
+    }
+}
 
-    Q_ASSERT(settings);
+IniDatasource::~IniDatasource()
+{
+
 }
 
 bool IniDatasource::set(const QString &tag, const QString &name, const int value)
@@ -32,14 +39,29 @@ int IniDatasource::get(const QString &tag, const QString &name, const int defaul
 
 bool IniDatasource::set(const QString &tag, const QString &name, const QString &value)
 {
-    Q_ASSERT(settings);
-    Q_ASSERT(name != "");
-    settings->setValue(QString("%1/%2").arg(tag).arg(name), value);
+    if(m_settings == NULL) return false;
+    m_settings->setValue(QString("%1/%2").arg(tag).arg(name), value);
     return true;
 }
 
 QString IniDatasource::get(const QString &tag, const QString &name, const QString &defaultValue = "")
 {
-    Q_ASSERT(settings);
-    return settings->value(QString("%1/%2").arg(tag).arg(name), defaultValue).toString();
+    if(m_settings == NULL) return "";
+    return m_settings->value(QString("%1/%2").arg(tag).arg(name), defaultValue).toString();
+}
+
+
+PluginObjectResult IniDatasource::init()
+{
+    return PLUGIN_OBJECT_RESULT_OK;
+}
+
+PluginObjectResult IniDatasource::deinit()
+{
+    return PLUGIN_OBJECT_RESULT_OK;
+}
+
+DatasourcePluginObject *IniDatasource::getDatasourceForProfile(Profile *profile)
+{
+    return new IniDatasource(profile, m_plugin, m_parent);
 }

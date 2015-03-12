@@ -1,37 +1,32 @@
 #ifndef INIDS_H
 #define INIDS_H
 
-#include "stbprofileplugin.h"
-#include "datasourceplugin.h"
+
 #include "inids_global.h"
+#include "plugin.h"
+#include "datasourceplugin.h"
 
 #include <QSet>
-
 #include <QSettings>
 
 namespace yasem
 {
 
-class INIDSSHARED_EXPORT IniDS: public QObject, public virtual Plugin, public virtual DatasourcePlugin
+class INIDSSHARED_EXPORT IniDsPlugin: public Plugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "com.mvas.yasem.IniDS/1.0" FILE "metadata.json")
-    Q_INTERFACES(yasem::Plugin yasem::DatasourcePlugin)
+    Q_INTERFACES(yasem::Plugin)
 
     Q_CLASSINFO("author", "Maxim Vasilchuk")
     Q_CLASSINFO("description", "INI datasource provider implementation for YASEM")
 public:
-    IniDS();
-
-    // Plugin interface
-public:
-    PLUGIN_ERROR_CODES initialize();
-    PLUGIN_ERROR_CODES deinitialize();
-
+    explicit IniDsPlugin(QObject* parent = 0);
+    virtual ~IniDsPlugin();
 
     // DatasourcePlugin interface
 public:
-    Datasource* getDatasourceForProfile(Profile* profile);
+
 
     // Plugin interface
 public:

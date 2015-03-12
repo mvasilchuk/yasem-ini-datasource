@@ -15,14 +15,21 @@ TEMPLATE = lib
 
 DEFINES += INIDS_LIBRARY
 
-INCLUDEPATH += ../../yasem-core
+INCLUDEPATH += ../../yasem-core/
+DEPENDPATH += ../../yasem-core/
 
-SOURCES += inids.cpp \
-    inidatasource.cpp
+SOURCES += \
+    ../../yasem-core/plugin.cpp \
+    inidatasource.cpp \
+    inidsplugin.cpp
 
-HEADERS += inids.h\
+HEADERS +=\
     inids_global.h \
-    inidatasource.h
+    inidatasource.h \
+    inidsplugin.h \
+    ../../yasem-core/plugin.h \
+    ../../yasem-core/abstractpluginobject.h \
+    ../../yasem-core/datasourcepluginobject.h
 
 unix {
     target.path = /usr/lib

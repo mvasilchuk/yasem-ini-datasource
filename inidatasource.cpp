@@ -17,8 +17,7 @@ IniDatasource::IniDatasource(Profile *profile, Plugin* plugin):
     {
         QString profilesDir = Core::instance()->settings()->value("ProfilesDir", CONFIG_PROFILES_DIR).toString();
 
-        m_settings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QString(CONFIG_DIR).append("/").append(profilesDir),
-                             profile->getId());
+        m_settings = new QSettings(Core::instance()->getConfigDir().append("%1/%2.ini").arg(profilesDir).arg(profile->getId()), QSettings::IniFormat, this);
     }
 }
 

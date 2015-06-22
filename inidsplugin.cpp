@@ -6,7 +6,7 @@ using namespace yasem;
 IniDsPlugin::IniDsPlugin(QObject *parent):
     Plugin(parent)
 {
-
+    setMultithreading(false);
 }
 
 IniDsPlugin::~IniDsPlugin()

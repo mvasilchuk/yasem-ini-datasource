@@ -21,10 +21,7 @@ SOURCES += \
 HEADERS +=\
     inids_global.h \
     inidatasource.h \
-    inidsplugin.h \
-    $${CORE_ROOT_DIR}/datasourceplugin.h \
-    $${CORE_ROOT_DIR}/abstractpluginobject.h \
-    $${CORE_ROOT_DIR}/datasourcepluginobject.h
+    inidsplugin.h
 
 unix {
     target.path = /usr/lib

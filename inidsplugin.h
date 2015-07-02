@@ -19,7 +19,9 @@ class INIDSSHARED_EXPORT IniDsPlugin: public Plugin
     Q_INTERFACES(yasem::Plugin)
 
     Q_CLASSINFO("author", "Maxim Vasilchuk")
-    Q_CLASSINFO("description", "INI datasource provider implementation for YASEM")
+    Q_CLASSINFO("description", "INI datasource provider")
+    Q_CLASSINFO("version", MODULE_VERSION)
+    Q_CLASSINFO("revision", GIT_VERSION)
 public:
     explicit IniDsPlugin(QObject* parent = 0);
     virtual ~IniDsPlugin();

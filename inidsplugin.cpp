@@ -4,7 +4,7 @@
 using namespace yasem;
 
 IniDsPlugin::IniDsPlugin(QObject *parent):
-    Plugin(parent)
+    SDK::Plugin(parent)
 {
     setMultithreading(false);
 }
@@ -14,11 +14,11 @@ IniDsPlugin::~IniDsPlugin()
 
 }
 
-void yasem::IniDsPlugin::register_dependencies()
+void IniDsPlugin::register_dependencies()
 {
 }
 
-void yasem::IniDsPlugin::register_roles()
+void IniDsPlugin::register_roles()
 {
-    register_role(ROLE_DATASOURCE, new IniDatasource(NULL, this));
+    register_role(SDK::ROLE_DATASOURCE, new IniDatasource(NULL, this));
 }

@@ -9,13 +9,15 @@
 
 namespace yasem
 {
+namespace SDK {
 class Profile;
+}
 
-class IniDatasource : public DatasourcePluginObject
+class IniDatasource : public SDK::DatasourcePluginObject
 {
     Q_OBJECT
 public:
-    explicit IniDatasource(Profile *profile, Plugin* plugin);
+    explicit IniDatasource(SDK::Profile *profile, SDK::Plugin* plugin);
     virtual ~IniDatasource();
 
 signals:
@@ -28,13 +30,13 @@ public slots:
     QString get(const QString &tag, const QString &name, const QString &defaultValue);
 
 protected:
-    Profile* m_profile;
+    SDK::Profile* m_profile;
     QSettings* m_settings;
 
 public:
-    PluginObjectResult init();
-    PluginObjectResult deinit();
-    DatasourcePluginObject* getDatasourceForProfile(Profile* profile);
+    SDK::PluginObjectResult init();
+    SDK::PluginObjectResult deinit();
+    SDK::DatasourcePluginObject* getDatasourceForProfile(SDK::Profile* profile);
 };
 
 }

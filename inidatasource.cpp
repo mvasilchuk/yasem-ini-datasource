@@ -8,16 +8,16 @@
 
 using namespace yasem;
 
-IniDatasource::IniDatasource(Profile *profile, Plugin* plugin):
-    DatasourcePluginObject(plugin),
+IniDatasource::IniDatasource(SDK::Profile *profile, SDK::Plugin* plugin):
+    SDK::DatasourcePluginObject(plugin),
     m_profile(profile),
     m_settings(NULL)
 {
     if(m_profile != NULL)
     {
-        QString profilesDir = Core::instance()->settings()->value("ProfilesDir", CONFIG_PROFILES_DIR).toString();
+        QString profilesDir = SDK::Core::instance()->settings()->value("ProfilesDir", CONFIG_PROFILES_DIR).toString();
 
-        m_settings = new QSettings(Core::instance()->getConfigDir().append("%1/%2.ini").arg(profilesDir).arg(profile->getId()), QSettings::IniFormat, this);
+        m_settings = new QSettings(SDK::Core::instance()->getConfigDir().append("%1/%2.ini").arg(profilesDir).arg(profile->getId()), QSettings::IniFormat, this);
     }
 }
 
@@ -50,17 +50,17 @@ QString IniDatasource::get(const QString &tag, const QString &name, const QStrin
 }
 
 
-PluginObjectResult IniDatasource::init()
+SDK::PluginObjectResult IniDatasource::init()
 {
-    return PLUGIN_OBJECT_RESULT_OK;
+    return SDK::PLUGIN_OBJECT_RESULT_OK;
 }
 
-PluginObjectResult IniDatasource::deinit()
+SDK::PluginObjectResult IniDatasource::deinit()
 {
-    return PLUGIN_OBJECT_RESULT_OK;
+    return SDK::PLUGIN_OBJECT_RESULT_OK;
 }
 
-DatasourcePluginObject *IniDatasource::getDatasourceForProfile(Profile *profile)
+SDK::DatasourcePluginObject *IniDatasource::getDatasourceForProfile(SDK::Profile *profile)
 {
     return new IniDatasource(profile, m_plugin);
 }

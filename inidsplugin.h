@@ -12,11 +12,11 @@
 namespace yasem
 {
 
-class INIDSSHARED_EXPORT IniDsPlugin: public Plugin
+class INIDSSHARED_EXPORT IniDsPlugin: public SDK::Plugin
 {
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "com.mvas.yasem.IniDS/1.0" FILE "metadata.json")
-    Q_INTERFACES(yasem::Plugin)
+    Q_INTERFACES(yasem::SDK::Plugin)
 
     Q_CLASSINFO("author", "Maxim Vasilchuk")
     Q_CLASSINFO("description", "INI datasource provider")

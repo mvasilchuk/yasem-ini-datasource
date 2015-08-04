@@ -23,7 +23,8 @@ IniDatasource::IniDatasource(SDK::Profile *profile, SDK::Plugin* plugin):
 
 IniDatasource::~IniDatasource()
 {
-
+    if(m_settings)
+        delete m_settings;
 }
 
 bool IniDatasource::set(const QString &tag, const QString &name, const int value)

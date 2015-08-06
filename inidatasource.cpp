@@ -2,27 +2,28 @@
 #include "macros.h"
 #include "core.h"
 #include "stbprofile.h"
+#include "datasourcefactory.h"
 
 #include <QDebug>
 #include <QSettings>
 
 using namespace yasem;
 
-IniDatasource::IniDatasource(SDK::Profile *profile, SDK::Plugin* plugin):
-    SDK::DatasourcePluginObject(plugin),
-    m_profile(profile),
+IniDatasource::IniDatasource(QObject* parent, const SDK::Profile* profile):
+    SDK::Datasource(parent),
     m_settings(NULL)
 {
-    if(m_profile != NULL)
-    {
-        QString profilesDir = SDK::Core::instance()->settings()->value("ProfilesDir", CONFIG_PROFILES_DIR).toString();
+    QString profilesDir = SDK::Core::instance()->settings()->value("ProfilesDir", CONFIG_PROFILES_DIR).toString();
 
-        m_settings = new QSettings(SDK::Core::instance()->getConfigDir().append("%1/%2.ini").arg(profilesDir).arg(profile->getId()), QSettings::IniFormat, this);
-    }
+    m_settings = new QSettings(
+                           SDK::Core::instance()->getConfigDir().append("%1/%2.ini").arg(profilesDir).arg(profile->getId()),
+                           QSettings::IniFormat, this
+                    );
 }
 
 IniDatasource::~IniDatasource()
 {
+    STUB() << this;
     if(m_settings)
         delete m_settings;
 }
@@ -51,17 +52,3 @@ QString IniDatasource::get(const QString &tag, const QString &name, const QStrin
 }
 
 
-SDK::PluginObjectResult IniDatasource::init()
-{
-    return SDK::PLUGIN_OBJECT_RESULT_OK;
-}
-
-SDK::PluginObjectResult IniDatasource::deinit()
-{
-    return SDK::PLUGIN_OBJECT_RESULT_OK;
-}
-
-SDK::DatasourcePluginObject *IniDatasource::getDatasourceForProfile(SDK::Profile *profile)
-{
-    return new IniDatasource(profile, m_plugin);
-}

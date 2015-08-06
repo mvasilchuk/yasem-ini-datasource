@@ -1,5 +1,5 @@
 #include "inidsplugin.h"
-#include "inidatasource.h"
+#include "inidspluginobject.h"
 
 using namespace yasem;
 
@@ -20,5 +20,5 @@ void IniDsPlugin::register_dependencies()
 
 void IniDsPlugin::register_roles()
 {
-    register_role(SDK::ROLE_DATASOURCE, new IniDatasource(NULL, this));
+    register_role(SDK::ROLE_DATASOURCE, new IniDsPluginObject(this));
 }

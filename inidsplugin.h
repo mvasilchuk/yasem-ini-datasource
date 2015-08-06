@@ -4,7 +4,7 @@
 
 #include "inids_global.h"
 #include "plugin.h"
-#include "datasourceplugin.h"
+#include "datasourcefactory.h"
 
 #include <QSet>
 #include <QSettings>
@@ -34,6 +34,9 @@ public:
 public:
     void register_dependencies();
     void register_roles();
+
+protected:
+    std::function<SDK::Datasource *()> creator();
 };
 
 }

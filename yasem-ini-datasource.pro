@@ -16,12 +16,14 @@ DEFINES += INIDS_LIBRARY
 
 SOURCES += \
     inidatasource.cpp \
-    inidsplugin.cpp
+    inidsplugin.cpp \
+    inidspluginobject.cpp
 
 HEADERS +=\
     inids_global.h \
     inidatasource.h \
-    inidsplugin.h
+    inidsplugin.h \
+    inidspluginobject.h
 
 unix {
     target.path = /usr/lib

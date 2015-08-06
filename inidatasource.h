@@ -1,8 +1,7 @@
 #ifndef INIDATASOURCE_H
 #define INIDATASOURCE_H
 
-#include "datasourceplugin.h"
-#include "datasourcepluginobject.h"
+#include "datasource.h"
 
 #include <QObject>
 #include <QSettings>
@@ -13,11 +12,11 @@ namespace SDK {
 class Profile;
 }
 
-class IniDatasource : public SDK::DatasourcePluginObject
+class IniDatasource : public SDK::Datasource
 {
     Q_OBJECT
 public:
-    explicit IniDatasource(SDK::Profile *profile, SDK::Plugin* plugin);
+    explicit IniDatasource(QObject* parent, const SDK::Profile* profile);
     virtual ~IniDatasource();
 
 signals:
@@ -30,13 +29,7 @@ public slots:
     QString get(const QString &tag, const QString &name, const QString &defaultValue);
 
 protected:
-    SDK::Profile* m_profile;
     QSettings* m_settings;
-
-public:
-    SDK::PluginObjectResult init();
-    SDK::PluginObjectResult deinit();
-    SDK::DatasourcePluginObject* getDatasourceForProfile(SDK::Profile* profile);
 };
 
 }

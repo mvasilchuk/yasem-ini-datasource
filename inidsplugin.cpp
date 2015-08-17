@@ -11,7 +11,7 @@ IniDsPlugin::IniDsPlugin(QObject *parent):
 
 IniDsPlugin::~IniDsPlugin()
 {
-
+    STUB();
 }
 
 void IniDsPlugin::register_dependencies()

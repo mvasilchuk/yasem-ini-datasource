@@ -6,8 +6,8 @@
 #include <QObject>
 #include <QSettings>
 
-namespace yasem
-{
+namespace yasem {
+
 namespace SDK {
 class Profile;
 }
@@ -22,11 +22,19 @@ public:
 signals:
 
 public slots:
-    bool set(const QString &tag, const QString &name, const int value);
-    int get(const QString &tag, const QString &name, const int defaultValue);
+    bool set(const QString &tag, const QString &name, const int value) Q_DECL_OVERRIDE;
+    int get(const QString &tag, const QString &name, const int defaultValue) Q_DECL_OVERRIDE;
 
-    bool set(const QString &tag, const QString &name, const QString &value);
-    QString get(const QString &tag, const QString &name, const QString &defaultValue);
+    bool set(const QString &tag, const QString &name, const QString &value) Q_DECL_OVERRIDE;
+    QString get(const QString &tag, const QString &name, const QString &defaultValue) Q_DECL_OVERRIDE;
+
+    void beginGroup(const QString &group) Q_DECL_OVERRIDE;
+    void endGroup() Q_DECL_OVERRIDE;
+
+    void setValue(const QString &key, const QVariant &value) Q_DECL_OVERRIDE;
+    QVariant value(const QString &key, const QVariant &defaultValue) const Q_DECL_OVERRIDE;
+
+    QStringList allKeys() const Q_DECL_OVERRIDE;
 
 protected:
     QSettings* m_settings;

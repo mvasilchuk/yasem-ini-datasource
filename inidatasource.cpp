@@ -52,3 +52,36 @@ QString IniDatasource::get(const QString &tag, const QString &name, const QStrin
 }
 
 
+
+
+void IniDatasource::beginGroup(const QString &group)
+{
+    if(m_settings == NULL) return;
+        m_settings->beginGroup(group);
+}
+
+void IniDatasource::endGroup()
+{
+    if(m_settings == NULL) return;
+        m_settings->endGroup();
+}
+
+
+void yasem::IniDatasource::setValue(const QString &key, const QVariant &value)
+{
+    if(m_settings == NULL) return;
+        m_settings->setValue(key, value);
+}
+
+QVariant yasem::IniDatasource::value(const QString &key, const QVariant &defaultValue) const
+{
+    if(m_settings == NULL) return defaultValue;
+        return m_settings->value(key, defaultValue);
+}
+
+
+QStringList yasem::IniDatasource::allKeys() const
+{
+    if(m_settings == NULL) return QStringList();
+        return m_settings->allKeys();
+}
